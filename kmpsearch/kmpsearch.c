@@ -10,15 +10,21 @@
 =============================================================================*/
 
 #include <stdio.h>
+#include <string.h>
 
 /*求解next数组*/
 void GetNext(char* p, int next[]);
 /*kmp排序*/
-void KmpSearch(char* s, char* p);
+int KmpSearch(char* s, char* p);
 
 int main(void)
 {
-	
+	char sourceStr[6] = "ababc";
+	char pattern[4] = "abc";
+
+	int result = KmpSearch(sourceStr, pattern);
+
+	printf("%d\n", result);
 	return 0;
 }
 
@@ -55,6 +61,9 @@ int KmpSearch(char* s, char* p)
 	int j = 0;
 	int sLen = strlen(s);
 	int pLen = strlen(p);
+	
+	int next[pLen];
+	GetNext(p, next);
 
 	while (i < sLen && j < pLen)
 	{
